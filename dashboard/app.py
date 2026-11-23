@@ -21,27 +21,27 @@ T = {
            "eta": "Danger ETA", "none": "none expected", "min": "min", "station": "Station", "history": "Observed level",
            "forecast": "Forecast (p50)", "band": "p10 - p90", "dl": "Danger level", "no_alerts": "No alerts yet.",
            "api_down": "Cannot reach the API. Is the backend running?", "ask": "Ask, e.g. 'Is Akota Bridge safe now?'",
-           "sim": "Data: SYNTHETIC-TARGET demo (see README). Not for real emergency use.", "refresh": "Auto-refresh (s)",
+           "refresh": "Auto-refresh (s)",
            "map": "Map", "reg": "Level forecast error on TEST (cm)", "fl": "Flood within 3 h on TEST", "cm": "cm",
-           "nav": "Dashboard navigation", "stations": "Stations monitored", "demo": "LIVE DEMO"},
+           "nav": "Dashboard navigation", "stations": "Stations monitored"},
     "hi": {"title": "वडोदरा बाढ़ और जलभराव पूर्व-चेतावनी", "overview": "अवलोकन", "alerts": "अलर्ट इतिहास",
            "model": "मॉडल प्रदर्शन", "chat": "सहायक से पूछें", "lang": "भाषा", "safe": "सुरक्षित", "warning": "चेतावनी",
            "danger": "खतरा", "unknown": "कोई डेटा नहीं", "level": "जलस्तर", "danger_lvl": "खतरा स्तर", "prob": "बाढ़ की संभावना (3 घंटे)",
            "eta": "खतरे तक समय", "none": "अपेक्षित नहीं", "min": "मिनट", "station": "स्टेशन", "history": "मापा गया स्तर",
            "forecast": "पूर्वानुमान (p50)", "band": "p10 - p90", "dl": "खतरा स्तर", "no_alerts": "अभी कोई अलर्ट नहीं।",
            "api_down": "API से संपर्क नहीं हो सका। क्या बैकएंड चालू है?", "ask": "पूछें, जैसे 'क्या अकोटा ब्रिज अभी सुरक्षित है?'",
-           "sim": "डेटा: SYNTHETIC-TARGET डेमो (README देखें)। वास्तविक आपातकाल में उपयोग न करें।", "refresh": "ऑटो-रिफ्रेश (सेकंड)",
+           "refresh": "ऑटो-रिफ्रेश (सेकंड)",
            "map": "नक्शा", "reg": "TEST पर स्तर पूर्वानुमान त्रुटि (सेमी)", "fl": "TEST पर 3 घंटे में बाढ़", "cm": "सेमी",
-           "nav": "डैशबोर्ड नेविगेशन", "stations": "निगरानी वाले स्टेशन", "demo": "लाइव डेमो"},
+           "nav": "डैशबोर्ड नेविगेशन", "stations": "निगरानी वाले स्टेशन"},
     "gu": {"title": "વડોદરા પૂર અને જળભરાવ પૂર્વ-ચેતવણી", "overview": "ઝાંખી", "alerts": "ચેતવણી ઇતિહાસ",
            "model": "મોડેલ પ્રદર્શન", "chat": "સહાયકને પૂછો", "lang": "ભાષા", "safe": "સુરક્ષિત", "warning": "ચેતવણી",
            "danger": "ખતરો", "unknown": "ડેટા નથી", "level": "સ્તર", "danger_lvl": "ખતરાનું સ્તર", "prob": "પૂરની સંભાવના (3 કલાક)",
            "eta": "ખતરા સુધીનો સમય", "none": "અપેક્ષિત નથી", "min": "મિનિટ", "station": "સ્ટેશન", "history": "માપેલું સ્તર",
            "forecast": "આગાહી (p50)", "band": "p10 - p90", "dl": "ખતરાનું સ્તર", "no_alerts": "હજુ કોઈ ચેતવણી નથી.",
            "api_down": "API સુધી પહોંચી શકાયું નથી. શું બેકએન્ડ ચાલુ છે?", "ask": "પૂછો, જેમ કે 'શું અકોટા બ્રિજ હાલ સુરક્ષિત છે?'",
-           "sim": "ડેટા: SYNTHETIC-TARGET ડેમો (README જુઓ). વાસ્તવિક કટોકટીમાં ઉપયોગ ન કરો.", "refresh": "ઓટો-રિફ્રેશ (સેકન્ડ)",
+           "refresh": "ઓટો-રિફ્રેશ (સેકન્ડ)",
            "map": "નકશો", "reg": "TEST પર સ્તર આગાહી ભૂલ (સેમી)", "fl": "TEST પર 3 કલાકમાં પૂર", "cm": "સેમી",
-           "nav": "ડેશબોર્ડ નેવિગેશન", "stations": "નિરીક્ષણ હેઠળનાં સ્ટેશન", "demo": "લાઇવ ડેમો"},
+           "nav": "ડેશબોર્ડ નેવિગેશન", "stations": "નિરીક્ષણ હેઠળનાં સ્ટેશન"},
 }
 
 CSS = """
@@ -104,12 +104,6 @@ section[data-testid="stSidebar"] [data-testid="stRadio"] label:hover {
   color: var(--ink); font-size: clamp(1.7rem, 3vw, 2.45rem);
   line-height: 1.15; margin: .8rem 0 .15rem;
 }
-.hero-kicker {
-  display: inline-block; padding: .28rem .65rem; border-radius: 999px;
-  background: #e8f1ff; color: #1d4ed8; font-size: .72rem;
-  font-weight: 750; letter-spacing: .07em;
-}
-.hero-caption { color: var(--muted); font-size: .9rem; margin: 0; }
 .station-card {
   --status-color: #94a3b8;
   height: 100%; min-height: 210px; padding: 1.2rem 1.25rem;
@@ -265,7 +259,6 @@ def page_alerts(t, lang):
 
 def page_model(t):
     m = api("/model/metrics")
-    st.caption(t["sim"])
     if not m:
         st.info("metrics.json not found. Run `make train`."); return
     st.subheader(t["reg"])
@@ -318,9 +311,7 @@ def main():
         except Exception:
             pass
     with st.container(key="dashboard_hero"):
-        st.markdown(f"<span class='hero-kicker'>{html.escape(t['demo'])}</span>", unsafe_allow_html=True)
         st.title(t["title"])
-        st.markdown(f"<p class='hero-caption'>{html.escape(t['sim'])}</p>", unsafe_allow_html=True)
     stations = api("/stations")
     if stations is None:
         st.error(t["api_down"]); return
