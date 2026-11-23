@@ -296,15 +296,50 @@ def page_model(t):
 
 
 def page_chat(t, lang):
+    st.subheader(t["chat"])
     st.session_state.setdefault("chat", [])
+
+    suggestions = {
+        "en": ["Is Akota Bridge safe now?", "Why was the alert sent?", "Show the recent alert history"],
+        "hi": ["अकोटा ब्रिज अभी सुरक्षित है?", "अलर्ट क्यों भेजा गया?", "हाल के अलर्ट दिखाएं"],
+        "gu": ["અકોટા બ્રિજ સુરક્ષિત છે?", "ચેતવણી શા માટે મોકલવામાં આવી?", "તાજેતરની चेतવणी ઇતિહાસ બતાવો"],
+    }
+    cols = st.columns(len(suggestions[lang]))
+    question = None
+    for col, suggestion in zip(cols, suggestions[lang]):
+        if col.button(suggestion, use_container_width=True, key=f"chat_suggestion_{suggestion}"):
+            question = suggestion
+
+    if st.session_state["chat"]:
+        if st.button("Clear chat", key="clear_chat"):
+            st.session_state["chat"] = []
+            st.rerun()
+
     for role, msg in st.session_state["chat"]:
-        st.chat_message(role).write(msg)
-    q = st.chat_input(t["ask"])
+        if role == "assistant":
+            if isinstance(msg, tuple):
+                source, text = msg
+            else:
+                source, text = "unknown", msg
+            st.chat_message(role).write(text)
+            st.caption(f"Answer source: {source}")
+        else:
+            st.chat_message(role).write(msg)
+
+    q = question or st.chat_input(t["ask"])
     if q:
         st.session_state["chat"].append(("user", q)); st.chat_message("user").write(q)
         r = api("/chat", method="post", json={"question": q})
-        a = r["answer"] if r else t["api_down"]
-        st.session_state["chat"].append(("assistant", a)); st.chat_message("assistant").write(a)
+        if r:
+            a = r["answer"]
+            source = r.get("source", "unknown")
+            st.session_state["chat"].append(("assistant", (source, a)))
+            st.chat_message("assistant").write(a)
+            st.caption(f"Answer source: {source}")
+        else:
+            a = t["api_down"]
+            st.session_state["chat"].append(("assistant", ("unknown", a)))
+            st.chat_message("assistant").write(a)
 
 
 def page_iot(stations, t, lang):
