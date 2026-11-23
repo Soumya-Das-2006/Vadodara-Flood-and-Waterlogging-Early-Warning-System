@@ -4,6 +4,7 @@
 #include <WiFi.h>
 #include <PubSubClient.h>
 #include <ArduinoJson.h>
+#include <HTTPClient.h>
 #include <time.h>
 #include <esp_task_wdt.h>
 #include "config.h"
@@ -68,6 +69,7 @@ void ensureWifi() {
 }
 
 void ensureMqtt() {
+  if (strlen(MQTT_HOST) == 0) return;
   if (WiFi.status() != WL_CONNECTED || mqtt.connected()) return;
   if (millis() - lastMqttTry < 5000 && lastMqttTry) return;
   lastMqttTry = millis();
@@ -83,13 +85,38 @@ String isoTime() {
   return String(b);
 }
 
+bool publishHttp(const char* body) {
+  if (strlen(API_URL) == 0 || strcmp(API_URL, "https://YOUR-BACKEND-URL") == 0 ||
+      strlen(API_KEY) == 0 || strcmp(API_KEY, "YOUR_API_KEY") == 0) {
+    Serial.println("offline: configure API_URL and API_KEY to enable HTTP ingest");
+    return false;
+  }
+  HTTPClient http;
+  String url = String(API_URL);
+  if (!url.endsWith("/")) url += "/";
+  url += "ingest";
+  http.begin(url);
+  http.addHeader("Content-Type", "application/json");
+  http.addHeader("X-API-Key", API_KEY);
+  int code = http.POST((uint8_t*)body, strlen(body));
+  http.end();
+  if (code >= 200 && code < 300) {
+    Serial.println("reading accepted by HTTP ingest");
+    return true;
+  }
+  Serial.printf("HTTP ingest failed: %d\n", code);
+  return false;
+}
+
 void setup() {
   Serial.begin(115200);
   pinMode(PIN_TRIG, OUTPUT); pinMode(PIN_ECHO, INPUT); pinMode(PIN_RAIN, INPUT_PULLUP);
   attachInterrupt(digitalPinToInterrupt(PIN_RAIN), onTip, FALLING);
   analogSetPinAttenuation(PIN_BATT, ADC_11db);
   WiFi.mode(WIFI_STA); WiFi.setAutoReconnect(true);
-  mqtt.setServer(MQTT_HOST, MQTT_PORT); mqtt.setBufferSize(256);
+  if (strlen(MQTT_HOST) > 0) {
+    mqtt.setServer(MQTT_HOST, MQTT_PORT); mqtt.setBufferSize(256);
+  }
   configTime(TZ_OFFSET_SEC, 0, NTP_SERVER);
   esp_task_wdt_init(60, true); esp_task_wdt_add(NULL);          // reboot if the loop hangs for 60 s
 }
@@ -106,6 +133,10 @@ void loop() {
   d["station"] = STATION_ID; d["level_cm"] = roundf(level * 10) / 10.0f;
   d["rain_mmh"] = roundf(rainRateMmH() * 10) / 10.0f; d["battery_v"] = roundf(batteryV() * 100) / 100.0f; d["ts"] = ts;
   char out[200]; size_t n = serializeJson(d, out, sizeof out);
-  if (mqtt.connected()) { mqtt.publish((String("flood/") + STATION_ID + "/telemetry").c_str(), (uint8_t*)out, n, false); Serial.println(out); }
-  else Serial.println("offline: reading dropped (add SD/flash buffer if you need store-and-forward)");
+  if (strlen(MQTT_HOST) > 0 && mqtt.connected()) {
+    mqtt.publish((String("flood/") + STATION_ID + "/telemetry").c_str(), (uint8_t*)out, n, false);
+    Serial.println(out);
+  } else if (!publishHttp(out)) {
+    Serial.println("reading not stored (configure MQTT or HTTP; add SD/flash buffer for store-and-forward)");
+  }
 }

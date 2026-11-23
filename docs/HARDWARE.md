@@ -12,6 +12,25 @@ Not built or tested in the sandbox. Prices are rough Indian market estimates (IN
 
 Mounting: sensor faces straight down over the water from a fixed bracket (bridge rail / underpass wall), at least 25 cm above the highest water, away from walls (beam is a cone). Measure the distance from the sensor face to the zero level and set `SENSOR_HEIGHT_CM` in `firmware/esp32/include/config.h`. Level = height - measured distance. Rain gauge in open sky, level, away from trees.
 
+## ESP32 live-data setup
+
+1. Copy the firmware folder into a PlatformIO project and open `firmware/esp32/include/config.h`.
+2. Set `STATION_ID` to the exact station ID from `config/stations.yaml`, for example `akota`.
+3. Set `WIFI_SSID`, `WIFI_PASSWORD`, and `SENSOR_HEIGHT_CM`.
+4. For HTTP mode, leave `MQTT_HOST` empty and set `API_URL` and `API_KEY`:
+   - Local/LAN backend: `API_URL=http://BACKEND-LAN-IP:8000`
+   - Hosted backend: `API_URL=https://your-backend-host`
+   - `API_KEY` must exactly match the backend `API_KEY` environment variable.
+5. Upload the firmware with PlatformIO. Open the Serial Monitor at `115200`; a successful reading reports `reading accepted by HTTP ingest`.
+6. Verify the live reading:
+
+```bash
+curl "http://BACKEND-LAN-IP:8000/stations" -H "X-API-Key: YOUR_API_KEY"
+curl "http://BACKEND-LAN-IP:8000/readings?station=akota&limit=10" -H "X-API-Key: YOUR_API_KEY"
+```
+
+For MQTT mode, set `MQTT_HOST`, `MQTT_PORT`, and credentials if enabled. The ESP32 will publish `flood/<station>/telemetry`; the backend must have the same broker host configured in `MQTT_HOST` and credentials in `MQTT_USER` / `MQTT_PASSWORD`.
+
 ## Bill of materials (per station)
 | Item | Qty | Approx. price (INR) |
 |---|---|---|

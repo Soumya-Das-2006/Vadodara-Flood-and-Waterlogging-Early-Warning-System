@@ -3,10 +3,12 @@
 #define STATION_ID        "akota"          // must match config/stations.yaml
 #define WIFI_SSID         "YOUR_WIFI"
 #define WIFI_PASSWORD     "YOUR_PASSWORD"
-#define MQTT_HOST         "192.168.1.10"   // broker IP / hostname
+#define MQTT_HOST         ""               // optional broker IP / hostname; leave empty to use HTTPS HTTP ingest
 #define MQTT_PORT         1883
 #define MQTT_USER         ""               // leave empty if the broker allows anonymous (demo only)
 #define MQTT_PASSWORD     ""
+#define API_URL           "https://YOUR-BACKEND-URL" // Render/Railway HTTPS URL, or http://LAN-IP:8000
+#define API_KEY           "YOUR_API_KEY"
 #define NTP_SERVER        "pool.ntp.org"
 #define TZ_OFFSET_SEC     19800            // IST = UTC+5:30
 
