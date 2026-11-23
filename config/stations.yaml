@@ -1,0 +1,52 @@
+# Station configuration. EDIT coordinates, danger levels and routes for your real sites.
+# danger_cm / alt_route values here are DEMO PLACEHOLDERS - verify with VMC / traffic police before real use.
+settings:
+  timezone: Asia/Kolkata
+  warning_prob_threshold: null      # null = use the threshold learned in models/metadata.json
+  min_history_hours: 96             # hourly history needed before the model runs
+  deescalate_after: 3               # consecutive lower-severity evaluations before status drops
+  eval_interval_seconds: 120        # how often the backend re-runs the model (demo compose overrides)
+  telegram_min_interval_seconds: 600  # per-station rate limit (danger escalations bypass it)
+  splits:                           # time split used for training (never shuffled)
+    val_start: "2023-01-01"
+    test_start: "2025-01-01"
+stations:
+  akota:
+    name: Akota Bridge
+    name_hi: अकोटा ब्रिज
+    name_gu: અકોટા બ્રિજ
+    lat: 22.2989
+    lon: 73.1642
+    danger_cm: 80
+    alt_route:
+      en: Use Race Course Road via Genda Circle
+      hi: जेंडा सर्कल होकर रेस कोर्स रोड का उपयोग करें
+      gu: જેન્ડા સર્કલ થઈને રેસ કોર્સ રોડનો ઉપયોગ કરો
+    languages: [en, hi, gu]
+    sim: {c: 8.0, k: 0.30, cr: 18.0, kr: 0.06}      # physics of the SYNTHETIC target only
+  alkapuri:
+    name: Alkapuri Underpass
+    name_hi: अलकापुरी अंडरपास
+    name_gu: અલકાપુરી અંડરપાસ
+    lat: 22.3105
+    lon: 73.1700
+    danger_cm: 40
+    alt_route:
+      en: Use Old Padra Road via Race Course Circle
+      hi: रेस कोर्स सर्कल होकर ओल्ड पदरा रोड का उपयोग करें
+      gu: રેસ કોર્સ સર્કલ થઈને ઓલ્ડ પાદરા રોડનો ઉપયોગ કરો
+    languages: [en, hi, gu]
+    sim: {c: 6.5, k: 0.50, cr: 3.5, kr: 0.08}
+  kamnath:
+    name: Kamnath Bridge (Vishwamitri)
+    name_hi: कामनाथ पुल (विश्वामित्री)
+    name_gu: કામનાથ પુલ (વિશ્વામિત્રી)
+    lat: 22.2933
+    lon: 73.2120
+    danger_cm: 100
+    alt_route:
+      en: Use Sayajigunj to Fatehgunj route via Kala Ghoda Circle
+      hi: कालाघोड़ा सर्कल होकर सयाजीगंज से फतेहगंज मार्ग का उपयोग करें
+      gu: કાલાઘોડા સર્કલ થઈને સયાજીગંજથી ફતેહગંજ માર્ગનો ઉપયોગ કરો
+    languages: [en, hi, gu]
+    sim: {c: 4.2, k: 0.15, cr: 33.0, kr: 0.04}

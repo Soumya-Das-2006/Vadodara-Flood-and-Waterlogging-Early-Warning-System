@@ -1,0 +1,53 @@
+{
+  "mode": "SYNTHETIC_RAIN__SYNTHETIC_TARGET",
+  "seed": 42,
+  "rows": 405031,
+  "time_range": [
+    "2010-01-03 23:00:00+05:30",
+    "2025-12-31 20:00:00+05:30"
+  ],
+  "stations": [
+    "akota",
+    "alkapuri",
+    "kamnath"
+  ],
+  "cleaning_report": {
+    "akota": {
+      "rows_in": 139357,
+      "duplicates_removed": 70,
+      "missing_hours_before": 969,
+      "level_spikes_removed": 106,
+      "rain_outliers_removed": 0,
+      "missing_hours_after": 782
+    },
+    "alkapuri": {
+      "rows_in": 139287,
+      "duplicates_removed": 70,
+      "missing_hours_before": 1039,
+      "level_spikes_removed": 110,
+      "rain_outliers_removed": 0,
+      "missing_hours_after": 851
+    },
+    "kamnath": {
+      "rows_in": 139303,
+      "duplicates_removed": 70,
+      "missing_hours_before": 1023,
+      "level_spikes_removed": 83,
+      "rain_outliers_removed": 0,
+      "missing_hours_after": 837
+    }
+  },
+  "labels": {
+    "rain_mmh": "SYNTHETIC",
+    "soil_moisture": "DERIVED from SYNTHETIC rain",
+    "discharge_upstream": "DERIVED from SYNTHETIC rain (index units)",
+    "level_cm and level_in_*h": "SYNTHETIC-TARGET (physics sim driven by rain + injected sensor faults)",
+    "flood_in_3h": "DERIVED from the SYNTHETIC-TARGET level and config danger_cm",
+    "fc_rain_*": "DERIVED/SYNTHETIC (noisy copy of future rain; 25% rows masked)"
+  },
+  "flood_rate": {
+    "akota": 0.008629941381514072,
+    "alkapuri": 0.00731029873713851,
+    "kamnath": 0.008702420629560947
+  }
+}

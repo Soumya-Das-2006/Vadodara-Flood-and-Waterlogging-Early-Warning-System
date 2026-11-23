@@ -1,0 +1,51 @@
+# One command: docker compose up --build     (dashboard http://localhost:8501, API http://localhost:8000/docs)
+# Optional secrets go in .env (copy env.example). The file is optional: everything runs without it using templates.
+services:
+  mosquitto:
+    image: eclipse-mosquitto:2
+    volumes:
+      - ./mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+      - mqtt-data:/mosquitto/data
+    ports: ["1883:1883"]
+    restart: unless-stopped
+
+  api:
+    build: { context: ., dockerfile: docker/Dockerfile.backend }
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      API_KEY: ${API_KEY:-dev-key}
+      MQTT_HOST: mosquitto
+      DB_PATH: /data/flood.db
+      ALLOW_SIM_TIME: "1"           # the simulator runs faster than real time; turn off with real sensors
+      EVAL_INTERVAL_S: "1"          # demo; use 120 in production
+      FORECAST_SOURCE: mqtt         # simulator publishes the rain forecast; use "openmeteo" with real sensors
+    volumes: [ "api-data:/data" ]
+    depends_on: [mosquitto]
+    ports: ["8000:8000"]
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request;urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 10s
+      retries: 10
+    restart: unless-stopped
+
+  dashboard:
+    build: { context: ., dockerfile: docker/Dockerfile.dashboard }
+    environment:
+      API_URL: http://api:8000
+      API_KEY: ${API_KEY:-dev-key}
+    depends_on: [api]
+    ports: ["8501:8501"]
+    restart: unless-stopped
+
+  simulator:                          # replays a heavy-rain scenario; remove this service when real ESP32 nodes publish
+    build: { context: ., dockerfile: docker/Dockerfile.backend }
+    command: ["python", "-m", "iot.simulator", "--mqtt-host", "mosquitto", "--scenario", "heavy_rain",
+              "--speed", "1.5", "--loop", "--cycle-hours", "40"]
+    depends_on: [mosquitto, api]
+    restart: unless-stopped
+
+volumes:
+  mqtt-data:
+  api-data:
