@@ -23,7 +23,14 @@ T = {
            "api_down": "Cannot reach the API. Is the backend running?", "ask": "Ask, e.g. 'Is Akota Bridge safe now?'",
            "refresh": "Auto-refresh (s)",
            "map": "Map", "reg": "Level forecast error on TEST (cm)", "fl": "Flood within 3 h on TEST", "cm": "cm",
-           "nav": "Dashboard navigation", "stations": "Stations monitored"},
+           "nav": "Dashboard navigation", "stations": "Stations monitored", "iot": "IoT / Live data",
+           "iot_status": "Live connection", "mqtt": "MQTT", "last_reading": "Last reading",
+           "level": "Water level", "rain": "Rainfall", "battery": "Battery",
+           "recent": "Recent sensor readings", "add_reading": "Add sensor reading",
+           "save_reading": "Save reading", "reading_saved": "Reading saved successfully.",
+           "reading_failed": "Reading could not be saved.", "http_ingest": "ESP32 HTTP ingest",
+           "setup_hint": "Leave MQTT_HOST empty in the ESP32 configuration and set API_URL and API_KEY.",
+           "no_readings": "No sensor readings have been received for this station."},
     "hi": {"title": "वडोदरा बाढ़ और जलभराव पूर्व-चेतावनी", "overview": "अवलोकन", "alerts": "अलर्ट इतिहास",
            "model": "मॉडल प्रदर्शन", "chat": "सहायक से पूछें", "lang": "भाषा", "safe": "सुरक्षित", "warning": "चेतावनी",
            "danger": "खतरा", "unknown": "कोई डेटा नहीं", "level": "जलस्तर", "danger_lvl": "खतरा स्तर", "prob": "बाढ़ की संभावना (3 घंटे)",
@@ -32,7 +39,14 @@ T = {
            "api_down": "API से संपर्क नहीं हो सका। क्या बैकएंड चालू है?", "ask": "पूछें, जैसे 'क्या अकोटा ब्रिज अभी सुरक्षित है?'",
            "refresh": "ऑटो-रिफ्रेश (सेकंड)",
            "map": "नक्शा", "reg": "TEST पर स्तर पूर्वानुमान त्रुटि (सेमी)", "fl": "TEST पर 3 घंटे में बाढ़", "cm": "सेमी",
-           "nav": "डैशबोर्ड नेविगेशन", "stations": "निगरानी वाले स्टेशन"},
+           "nav": "डैशबोर्ड नेविगेशन", "stations": "निगरानी वाले स्टेशन", "iot": "IoT / लाइव डेटा",
+           "iot_status": "लाइव कनेक्शन", "mqtt": "MQTT", "last_reading": "अंतिम रीडिंग",
+           "level": "जलस्तर", "rain": "बारिश", "battery": "बैटरी",
+           "recent": "हाल की सेंसर रीडिंग", "add_reading": "सेंसर रीडिंग जोड़ें",
+           "save_reading": "रीडिंग सेव करें", "reading_saved": "रीडिंग सफलतापूर्वक सेव हो गई।",
+           "reading_failed": "रीडिंग सेव नहीं हो सकी।", "http_ingest": "ESP32 HTTP इंटेज़्ट",
+           "setup_hint": "ESP32 कॉन्फ़िगरेशन में MQTT_HOST खाली रखें और API_URL तथा API_KEY सेट करें।",
+           "no_readings": "इस स्टेशन के लिए अभी कोई सेंसर रीडिंग नहीं मिली।"},
     "gu": {"title": "વડોદરા પૂર અને જળભરાવ પૂર્વ-ચેતવણી", "overview": "ઝાંખી", "alerts": "ચેતવણી ઇતિહાસ",
            "model": "મોડેલ પ્રદર્શન", "chat": "સહાયકને પૂછો", "lang": "ભાષા", "safe": "સુરક્ષિત", "warning": "ચેતવણી",
            "danger": "ખતરો", "unknown": "ડેટા નથી", "level": "સ્તર", "danger_lvl": "ખતરાનું સ્તર", "prob": "પૂરની સંભાવના (3 કલાક)",
@@ -41,7 +55,14 @@ T = {
            "api_down": "API સુધી પહોંચી શકાયું નથી. શું બેકએન્ડ ચાલુ છે?", "ask": "પૂછો, જેમ કે 'શું અકોટા બ્રિજ હાલ સુરક્ષિત છે?'",
            "refresh": "ઓટો-રિફ્રેશ (સેકન્ડ)",
            "map": "નકશો", "reg": "TEST પર સ્તર આગાહી ભૂલ (સેમી)", "fl": "TEST પર 3 કલાકમાં પૂર", "cm": "સેમી",
-           "nav": "ડેશબોર્ડ નેવિગેશન", "stations": "નિરીક્ષણ હેઠળનાં સ્ટેશન"},
+           "nav": "ડેશબોર્ડ નેવિગેશન", "stations": "નિરીક્ષણ હેઠળનાં સ્ટેશન", "iot": "IoT / લાઇવ ડેટા",
+           "iot_status": "લાઇવ કનેક્શન", "mqtt": "MQTT", "last_reading": "છેલ્લું રીડિંગ",
+           "level": "પાણીનું સ્તર", "rain": "વર્ષા", "battery": "બેટરી",
+           "recent": "તાજેતરની સેન્સર રીડિંગ", "add_reading": "સેન્સર રીડિંગ ઉમેરો",
+           "save_reading": "રીડિંગ સંગ્રહ કરો", "reading_saved": "રીડિંગ સફળતાપૂર્વક સંગ્રહ થઈ.",
+           "reading_failed": "રીડিং સંગ્રહ થઈ નથી.", "http_ingest": "ESP32 HTTP ઇન્ટેજ",
+           "setup_hint": "ESP32 કૉન્ફિગરેશનમાં MQTT_HOST ખાલી રાખો અને API_URL તથા API_KEY સેટ કરો.",
+           "no_readings": "આ સ્ટેશન માટે હજુ કોઈ સેન્સર રીડિંગ પ્રાપ્ત નથી."},
 }
 
 CSS = """
@@ -286,6 +307,94 @@ def page_chat(t, lang):
         st.session_state["chat"].append(("assistant", a)); st.chat_message("assistant").write(a)
 
 
+def page_iot(stations, t, lang):
+    try:
+        health = requests.get(API + "/health", timeout=8)
+        health.raise_for_status()
+        health = health.json()
+    except Exception:
+        health = {}
+
+    status = health.get("status", "degraded")
+    mqtt_connected = bool(health.get("mqtt_connected"))
+    cols = st.columns(4)
+    cols[0].metric(t["iot_status"], "Connected" if status == "ok" else "Unavailable")
+    cols[1].metric(t["mqtt"], "Connected" if mqtt_connected else "Not configured")
+    cols[2].metric(t["stations"], health.get("stations", len(stations)))
+    cols[3].metric(t["last_reading"], health.get("last_reading") or "-")
+
+    st.subheader(t["recent"])
+    station_names = {name_of(s, lang): s for s in stations}
+    selected_name = st.selectbox(t["station"], list(station_names))
+    station = station_names[selected_name]
+    readings = api("/readings", params={"station": station["id"], "limit": 500})
+
+    if readings:
+        frame = pd.DataFrame(readings)
+        frame["ts"] = pd.to_datetime(frame["ts"])
+        frame = frame.sort_values("ts")
+
+        latest = frame.iloc[-1]
+        metric_cols = st.columns(3)
+        metric_cols[0].metric(t["level"], f"{latest['level_cm']:.1f} cm")
+        metric_cols[1].metric(t["rain"], f"{latest['rain_mmh']:.1f} mm/h")
+        metric_cols[2].metric(t["battery"], f"{latest['battery_v']:.2f} V" if pd.notna(latest.get("battery_v")) else "-")
+
+        fig = go.Figure()
+        fig.add_trace(go.Scatter(x=frame["ts"], y=frame["level_cm"], name=t["level"],
+                                 line=dict(color="#2563eb", width=2)))
+        fig.add_hline(y=station["danger_cm"], line_color="#dc2626", line_dash="dash",
+                      annotation_text=t["danger_lvl"])
+        fig.update_layout(height=330, margin=dict(l=16, r=16, t=20, b=16),
+                          plot_bgcolor="#fff", paper_bgcolor="#fff",
+                          yaxis=dict(title=t["cm"], gridcolor="#edf1f6"),
+                          xaxis=dict(gridcolor="#edf1f6"))
+        st.plotly_chart(fig, use_container_width=True)
+
+        display = frame.tail(100).sort_values("ts", ascending=False)
+        st.dataframe(display, hide_index=True, use_container_width=True)
+        st.download_button(
+            "Download CSV",
+            display.to_csv(index=False).encode("utf-8"),
+            file_name=f"{station['id']}_readings.csv",
+            mime="text/csv",
+        )
+    else:
+        st.info(t["no_readings"])
+
+    st.subheader(t["add_reading"])
+    with st.form("iot_reading_form", clear_on_submit=True):
+        level = st.number_input(t["level"], min_value=0.0, max_value=1000.0, value=0.0, step=0.1)
+        rain = st.number_input(t["rain"], min_value=0.0, max_value=1000.0, value=0.0, step=0.1)
+        battery = st.number_input(t["battery"], min_value=0.0, max_value=20.0, value=4.0, step=0.01)
+        submitted = st.form_submit_button(t["save_reading"])
+        if submitted:
+            body = {
+                "station": station["id"],
+                "level_cm": float(level),
+                "rain_mmh": float(rain),
+                "battery_v": float(battery),
+                "ts": pd.Timestamp.now(tz="Asia/Kolkata").isoformat(),
+            }
+            result = api("/ingest", method="post", json=body)
+            if result and result.get("ok"):
+                st.success(t["reading_saved"])
+                st.rerun()
+            else:
+                st.error(t["reading_failed"])
+
+    with st.expander(t["http_ingest"]):
+        st.code(
+            "# firmware/esp32/include/config.h\n"
+            '#define STATION_ID "akota"\n'
+            '#define MQTT_HOST ""\n'
+            '#define API_URL "https://your-backend-host"\n'
+            '#define API_KEY "YOUR_API_KEY"',
+            language="cpp",
+        )
+        st.caption(t["setup_hint"])
+
+
 def main():
     st.set_page_config(page_title="Vadodara Flood EWS", page_icon="🌊", layout="wide")
     st.markdown(CSS, unsafe_allow_html=True)
@@ -299,14 +408,14 @@ def main():
                                 format_func=lambda x: {"en": "English", "hi": "हिन्दी", "gu": "ગુજરાતી"}[x])
     t = T[lang]
     page = st.sidebar.radio(
-        t["nav"], ["overview", "alerts", "model", "chat"],
+        t["nav"], ["overview", "iot", "alerts", "model", "chat"],
         format_func=lambda key: t[key], label_visibility="collapsed",
     )
     every = st.sidebar.number_input(t["refresh"], 0, 60, 10)
     if every:
         try:
             from streamlit_autorefresh import st_autorefresh
-            if page in ("overview", "alerts"):
+            if page in ("overview", "iot", "alerts"):
                 st_autorefresh(interval=int(every * 1000), key="auto")
         except Exception:
             pass
@@ -315,8 +424,9 @@ def main():
     stations = api("/stations")
     if stations is None:
         st.error(t["api_down"]); return
-    {"overview": lambda: page_overview(stations, t, lang), "alerts": lambda: page_alerts(t, lang),
-     "model": lambda: page_model(t), "chat": lambda: page_chat(t, lang)}[page]()
+    {"overview": lambda: page_overview(stations, t, lang), "iot": lambda: page_iot(stations, t, lang),
+     "alerts": lambda: page_alerts(t, lang), "model": lambda: page_model(t),
+     "chat": lambda: page_chat(t, lang)}[page]()
 
 
 main()
